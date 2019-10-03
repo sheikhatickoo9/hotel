@@ -87,8 +87,8 @@ DATABASES = {
         'NAME': 'hotel_db1',
         'PORT': '3306',
         'HOST': '127.0.0.1',
-        'USER': 'root',
-        'PASSWORD': ''
+        'USER': 'hotel_management',
+        'PASSWORD': 'hotelmanagement'
     }
 }
 
