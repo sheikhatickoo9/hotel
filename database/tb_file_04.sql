@@ -13,7 +13,9 @@
 
 
 
- Dumping structure for table hotel_db1.myuserapp_usersignup
+ 
+ Drop table myuserapp_usersignup
+/**Dumping structure for table hotel_db1.myuserapp_usersignup
 CREATE TABLE IF NOT EXISTS `myuserapp_usersignup` (
   `userFullName` varchar(200) NOT NULL,
   `userEmail` varchar(200) NOT NULL,
@@ -31,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `myuserapp_usersignup` (
   PRIMARY KEY (`userEmail`),
   KEY `Myuserapp_usersignup_roleId_id_4e992217_fk_Myuserapp` (`roleId_id`),
   CONSTRAINT `Myuserapp_usersignup_roleId_id_4e992217_fk_Myuserapp` FOREIGN KEY (`roleId_id`) REFERENCES `myuserapp_userrole` (`roleId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;*/
 
 -- Data exporting was unselected.
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

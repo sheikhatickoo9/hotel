@@ -3,6 +3,6 @@ def authentication(auth,role_id,user_role_id):
             if role_id==user_role_id:
                 return True
             else:
-                return False,"Inalid_user"
+                return False,"Invalid_user"
     else:
-        return False,"not_login"
+        return False, "not valid login"
