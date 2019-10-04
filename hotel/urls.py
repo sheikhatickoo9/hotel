@@ -19,7 +19,8 @@ from django import views
 from django.conf.urls import url,include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    url('admin/', admin.site.urls),
+    url(r'^verifyuser/$',views.usersignup),
 url(r'^user/',include('Myuserapp.urls'))
 ]
 
