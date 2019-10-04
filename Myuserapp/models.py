@@ -20,3 +20,5 @@ class UserSignup(models.Model):
     otpconfirmation=models.CharField(max_length=200,default="")
     isActive = models.BooleanField(default=True)
     isverified=models.BooleanField(default=False)
+    usertoken=models.CharField(max_length=200,default="")
+

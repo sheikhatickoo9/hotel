@@ -27,11 +27,12 @@ mail= 'welcome here'
 sendmail(subject,receiver,mail)
 def gen_otp():
     otp = random.randint(1,100000)
+    otp=str(otp)
+    time=datetime.datetime.now()
+    print(otp,time)
+    return otp,time
 
-    print(otp,datetime.datetime.now())
-    return otp
-
-
+gen_otp()
 
 
 

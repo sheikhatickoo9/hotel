@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+
+<body>
+<form method="post">
+    {% csrf_token %}
+{% if sucess %}
+    <script>
+        alert("successfully done")
+    </script>
+    {% endif %}
+
+<label>
+    name
+</label>
+<input type="text" name="name">
+<br/>
+<label>
+    email
+</label>
+<input type="text" name="email">
+<br/><label>
+    password
+</label>
+<input type="text" name="password">
+<br/><label>
+    mobile no.
+</label>
+<input type="text" name="mobile">
+<br/><label>
+    age
+</label>
+<input type="text" name="age">
+<br/><label>
+    address
+</label>
+<input type="text" name="address">
+<br/><label>
+    state
+</label>
+<input type="text" name="state">
+<br/>
+    <input type="submit" name="submit">
+</form>
+</body>
+</html>

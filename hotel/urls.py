@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django import views
+from Myuserapp import views
 from django.conf.urls import url,include
 
 urlpatterns = [
     url('admin/', admin.site.urls),
-    #url(r'^verifyuser/$',views.usersignup),
+    url(r'^verifyuser/$',views.usersignup),
 url(r'^user/',include('Myuserapp.urls'))
 ]
 
