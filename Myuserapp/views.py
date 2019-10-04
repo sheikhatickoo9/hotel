@@ -45,5 +45,5 @@ def verify(request):
         email.save()
         up = UserSignup(userEmail=useremail, isverified=isverified)
         up.save(update_fields=["isverified"])
-        return HttpResponse(" verified user sucessfull")
+        return HttpResponse(" verified user sucessfull done")
 
