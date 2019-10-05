@@ -1,6 +1,7 @@
 import smtplib
 import random
 import datetime
+import string
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 def sendmail(subject,receiver,mail):
@@ -15,6 +16,7 @@ def sendmail(subject,receiver,mail):
         server.login('castlelords778@gmail.com', 'hotelmanagement')
         text=msg.as_string()
         server.sendmail(msg['FROM'], msg["To"], text)
+
         print("email send successful")
         server.quit()
         return True
@@ -24,10 +26,11 @@ def sendmail(subject,receiver,mail):
 subject = 'subject of the mail'
 receiver = 'sheikhanetmax@gmail.com'
 mail= 'welcome here'
-sendmail(subject,receiver,mail)
+# sendmail(subject,receiver,mail)
 def gen_otp():
+    letters=string.ascii_letters
     otp = random.randint(1,100000)
-    otp=str(otp)
+    otp=str(otp).join(random.choice(letters) for i in range(3))
     time=datetime.datetime.now()
     print(otp,time)
     return otp,time
