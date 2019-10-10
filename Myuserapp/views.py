@@ -4,7 +4,7 @@ from authorize import authcheck
 from Myuserapp.models import UserSignup
 from Myuserapp.forms import UserSignupForm
 from django.contrib.auth.hashers import make_password,check_password
-from miscellaneous import myconstants
+from miscellaneous.myconstants import role_manager
 from authorize.authcheck import authentication
 def index(request):
     return render(request, "home.html")
@@ -26,7 +26,7 @@ def usersignup(request):
         f.userState = request.POST["state"]
         f.otpcolumn=otp
         f.otptime=time
-        f.roleId_id = 1
+        f.roleId_id = 2
         token =email[0:3]+request.POST['password'][0:2]+otp
         token = make_password(token)
         token=token.replace("+","")
@@ -55,7 +55,6 @@ def verify(request):
             up = UserSignup(userEmail=useremail, isverified=isverified)
             up.save(update_fields=["isverified"])
             return HttpResponse(" verified user sucessfull done")
-
         else:
             return redirect('/404/')
     except:
@@ -74,7 +73,7 @@ def login(request):
                 request.session['email']=email
                 #the name inside the brackets are customizable.
                 request.session['roleId']=data.roleId_id
-                return redirect("/manager/",{"sucess":True})
+                return redirect("/manager/")
             else:
                 return render(request,"login.html",{'wrongpw':True})
         except:
@@ -83,17 +82,17 @@ def login(request):
 
 def manager(request):
     try:
-        authdata=authcheck.authentication(request.session['Authentication'],request.session['roleid'],myconstants.manager)
+        authdata=authcheck.authentication(request.session['Authentication'],request.session['roleId'],role_manager)
         if(authdata==True):
             return render(request,'manager.html')
         else:
             authinfo,message=authdata
-            if(message=="invalid_user"):
+            if(message=="Invalid_user"):
                 return redirect("/unauthoriz/")
-            elif(message=="Not_Login"):
+            elif(message=="not_valid_login"):
                 return redirect("/notlogin/")
     except:
-            return redirect("/notlogin/")
+             return redirect("/notlogin/")
 
 def pageNotFound(request):
     return render(request,'404.html')

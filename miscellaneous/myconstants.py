@@ -1,1 +1,1 @@
-manager=1
+role_manager = 1
