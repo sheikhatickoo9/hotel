@@ -55,8 +55,11 @@ def verify(request):
             up = UserSignup(userEmail=useremail, isverified=isverified)
             up.save(update_fields=["isverified"])
             return HttpResponse(" verified user sucessfull done")
+
+        else:
+            return redirect('/404/')
     except:
-        return redirect('/signup/')
+        return redirect("/404/")
 def login(request):
     if(request.method=="POST"):
         #email is object and 'email' is textbox name
@@ -82,13 +85,19 @@ def manager(request):
     try:
         authdata=authcheck.authentication(request.session['Authentication'],request.session['roleid'],myconstants.manager)
         if(authdata==True):
-            return render(request,"notlogin.html")
+            return render(request,'manager.html')
         else:
             authinfo,message=authdata
             if(message=="invalid_user"):
-                return redirect("/unauthorize_ccess/")
+                return redirect("/unauthoriz/")
             elif(message=="Not_Login"):
                 return redirect("/notlogin/")
     except:
             return redirect("/notlogin/")
-    return render(request,'manager.html')
+
+def pageNotFound(request):
+    return render(request,'404.html')
+def notLogin(request):
+    return render(request,'notlogin.html')
+def unauthorizedAccess(request):
+    return render(request,'unauthoriz.html')
