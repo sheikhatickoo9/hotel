@@ -39,19 +39,19 @@ def usersignup(request):
         return render(request,'sign.html',{"sucess":True})
     return render(request,'sign.html')
 
-# def verify(request):
-#     useremail=request.GET['email']
-#     token=request.GET['token']
-#     email=UserSignup.objects.get(userEmail=useremail)
-#     if email.userEmail==useremail and token==email.usertoken:
-#         isverified=True
-#         email.otpcolumn=''
-#         email.usertoken=''
-#         email.otpconfirmation=''
-#         email.save()
-#         up = UserSignup(userEmail=useremail, isverified=isverified)
-#         up.save(update_fields=["isverified"])
-#         return HttpResponse(" verified user sucessfull done")
+def verify(request):
+    useremail=request.GET['email']
+    token=request.GET['token']
+    email=UserSignup.objects.get(userEmail=useremail)
+    if email.userEmail==useremail and token==email.usertoken:
+        isverified=True
+        email.otpcolumn=''
+        email.usertoken=''
+        email.otpconfirmation=''
+        email.save()
+        up = UserSignup(userEmail=useremail, isverified=isverified)
+        up.save(update_fields=["isverified"])
+        return HttpResponse(" verified user sucessfull done")
 def login(request):
     if(request.method=="POST"):
         #email is object and 'email' is textbox name
