@@ -22,7 +22,8 @@ from django.conf.urls import url,include
 urlpatterns = [
     url('admin/', admin.site.urls),
     url(r'^signup/$',views.usersignup),
-    url(r'^verifyuser/$',views.verify),
+    #url(r'^verifyuser/$',views.verify),
+    url(r'^login/$',views.login),
     url(r'^user/',include('Myuserapp.urls'))
 ]
 

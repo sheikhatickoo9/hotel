@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login page</title>
+</head>
+<body>
+
+<form method="post">
+     {% csrf_token %}
+    {% if wrongpw %}
+    <script type="text/javascript">
+        alert("wrong pw");
+    </script>
+    {% endif %}
+    {% if wrongem %}
+    <script type="text/javascript">
+        alert("wrong email");
+    </script>
+    {% endif %}
+
+
+<label>
+    email
+</label>
+<input type="text" name="email">
+<br/><label>
+    password
+</label>
+<input type="password" name="password">
+<br/>
+    <input type="submit" value="login">
+</form>
+
+</body>
+</html>

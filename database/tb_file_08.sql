@@ -17,7 +17,7 @@ CREATE DATABASE IF NOT EXISTS `hotel_db1` /*!40100 DEFAULT CHARACTER SET latin1 
 USE `hotel_db1`;
 
 -- Dumping structure for table hotel_db1.myuserapp_usersignup
-CREATE TABLE IF NOT EXISTS `myuserapp_usersignup` (
+hotel_db1myuserapp_usersignupCREATE TABLE IF NOT EXISTS `myuserapp_usersignup` (
   `userFullName` varchar(200) NOT NULL,
   `userEmail` varchar(200) NOT NULL,
   `userPassword` varchar(200) NOT NULL,
