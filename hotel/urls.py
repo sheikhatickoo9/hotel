@@ -28,10 +28,8 @@ url(r'^manager/$',views.manager),
 url(r'^404/$',views.pageNotFound),
 url(r'^notlogin/$',views.notLogin),
 url(r'^unauthoriz/$',views.unauthorizedAccess),
-
-
+url(r'^logout/$',views.logout),
     url(r'^user/',include('Myuserapp.urls'))
-
 ]
 
 

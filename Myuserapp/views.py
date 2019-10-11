@@ -59,6 +59,7 @@ def verify(request):
             return redirect('/404/')
     except:
         return redirect("/404/")
+
 def login(request):
     if(request.method=="POST"):
         #email is object and 'email' is textbox name
@@ -68,6 +69,7 @@ def login(request):
             data=UserSignup.objects.get(userEmail=email)
             dbpassword=data.userPassword
             auth=check_password(password,dbpassword)
+            isa=data.isverified
             if(auth==True):
                 request.session['Authentication']=True
                 request.session['email']=email
@@ -100,3 +102,11 @@ def notLogin(request):
     return render(request,'notlogin.html')
 def unauthorizedAccess(request):
     return render(request,'unauthoriz.html')
+def logout(request):
+    try:
+        request.session.pop("Authentication")
+        request.session.pop("email")
+        request.session.pop("roleId")
+        return redirect("/login/")
+    except:
+        return redirect("/login/")
