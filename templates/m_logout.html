@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Master Page </title>
+</head>
+<body>
+
+<div>
+    {% block manager %}
+    {% endblock %}
+</div>
+
+<div class="btn">
+    <a href="/logout/">logout</a>
+    {% block content %}
+    {% endblock %}
+</div>
+
+<div class="b">
+    <a href="/changepassword/">changepassword</a>
+   {% block password %}
+    {% endblock %}
+</div>
+
+
+
+</body>
+</html>

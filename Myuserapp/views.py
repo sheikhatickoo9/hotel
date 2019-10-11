@@ -26,7 +26,7 @@ def usersignup(request):
         f.userState = request.POST["state"]
         f.otpcolumn=otp
         f.otptime=time
-        f.roleId_id = 2
+        f.roleId_id = 1
         token =email[0:3]+request.POST['password'][0:2]+otp
         token = make_password(token)
         token=token.replace("+","")
@@ -110,3 +110,16 @@ def logout(request):
         return redirect("/login/")
     except:
         return redirect("/login/")
+
+def changePassword(request):
+    if (request.method == "POST"):
+        cpass = request.POST['cpass']
+        npass = request.POST['npass']
+        # cpass = request.POST['cpass']
+        email=request.session['email']
+        email_id = UserSignup.objects.get(userEmail=email)
+        if email_id.userPassword==cpass:
+            up = UserSignup(userPassword=npass)
+            up.save(update_fields=["userPassword"])
+            return HttpResponse("change successfully")
+    return render(request,'changepassword.html')

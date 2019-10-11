@@ -1,18 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% if sucess %}
-    <script>
-        alert("successfully done")
-    </script>
-    {% endif %}
-manager
-<div class="btn">
-    <a href="/logout/">logout</a>
-</div>
-</body>
-</html>
+{% extends 'm_logout.html' %}
+{% block manager %}
+<h1> manager </h1>
+
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}
+
+{% block password %}
+password
+{% endblock %}
+
+
+
+
