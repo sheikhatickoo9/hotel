@@ -63,21 +63,24 @@ def verify(request):
 def login(request):
     if(request.method=="POST"):
         #email is object and 'email' is textbox name
-        email=request.POST['email']
-        password=request.POST['password']
+        email = request.POST['email']
+        password = request.POST['password']
         try:
             data=UserSignup.objects.get(userEmail=email)
+            isvarified =data.isverified
             dbpassword=data.userPassword
             auth=check_password(password,dbpassword)
-            isa=data.isverified
-            if(auth==True):
-                request.session['Authentication']=True
-                request.session['email']=email
-                #the name inside the brackets are customizable.
-                request.session['roleId']=data.roleId_id
-                return redirect("/manager/")
+            if isvarified==True:
+                if(auth==True):
+                    request.session['Authentication']=True
+                    request.session['email']=email
+                    #the name inside the brackets are customizable.
+                    request.session['roleId']=data.roleId_id
+                    return redirect("/manager/")
+                else:
+                    return render(request,"login.html",{'wrongpw':True})
             else:
-                return render(request,"login.html",{'wrongpw':True})
+                return render(request, "login.html", {'i': True})
         except:
             return render(request,"login.html",{'wrongem':True})
     return render(request,"login.html")
@@ -91,7 +94,7 @@ def manager(request):
             authinfo,message=authdata
             if(message=="Invalid_user"):
                 return redirect("/unauthoriz/")
-            elif(message=="not_valid_login"):
+            elif(message=="Not_Login"):
                 return redirect("/notlogin/")
     except:
              return redirect("/notlogin/")
@@ -114,12 +117,22 @@ def logout(request):
 def changePassword(request):
     if (request.method == "POST"):
         cpass = request.POST['cpass']
-        npass = request.POST['npass']
+
+        apass = request.POST['apass']
+        npass = make_password(request.POST['npass'])
         # cpass = request.POST['cpass']
         email=request.session['email']
         email_id = UserSignup.objects.get(userEmail=email)
-        if email_id.userPassword==cpass:
-            up = UserSignup(userPassword=npass)
+        opass=email_id.userPassword
+        auth = check_password(cpass,opass)
+        auth2 = check_password(apass,npass)
+        if auth==True and auth2==True:
+            up = UserSignup(userEmail=email_id.userEmail,userPassword=npass)
             up.save(update_fields=["userPassword"])
             return HttpResponse("change successfully")
-    return render(request,'changepassword.html')
+        else:
+            return render(request, 'changePassword.html',{'n':True})
+
+    return render(request,'changePassword.html')
+
+
