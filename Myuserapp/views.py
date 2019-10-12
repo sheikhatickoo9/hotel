@@ -94,7 +94,7 @@ def manager(request):
             authinfo,message=authdata
             if(message=="Invalid_user"):
                 return redirect("/unauthoriz/")
-            elif(message=="Not_Login"):
+            elif(message=="NotLogin"):
                 return redirect("/notlogin/")
     except:
              return redirect("/notlogin/")
@@ -114,7 +114,7 @@ def logout(request):
     except:
         return redirect("/login/")
 
-def changePassword(request):
+def ChangePassword(request):
     if (request.method == "POST"):
         cpass = request.POST['cpass']
 

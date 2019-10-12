@@ -5,4 +5,4 @@ def authentication(auth,role_id,user_role_id):
             else:
                 return False,"Invalid_user"
     else:
-        return False, "Not_Login"
+        return False, "NotLogin"
