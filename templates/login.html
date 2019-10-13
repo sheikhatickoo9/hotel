@@ -2,25 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>login page</title>
+    <title>Login Page</title>
 </head>
 <body>
 
 <form method="post">
      {% csrf_token %}
-    {% if wrongpw %}
+    {% if wrong_email %}
     <script type="text/javascript">
-        alert("wrong pw");
+        alert("Wrong Email");
     </script>
-    {% endif %}
-    {% if wrongem %}
+    {% elif wrong_password %}
     <script type="text/javascript">
-        alert("wrong email");
-    </script>
-    {% endif %}
-{% if i %}
-    <script type="text/javascript">
-        alert("USER IS NOT ACTIVE PLEASE VERIFY EMAIL")
+        alert("Wrong Password");
     </script>
     {% endif %}
 

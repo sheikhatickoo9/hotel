@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Signup</title>
 </head>
 
 
@@ -14,7 +14,15 @@
         alert("successfully done")
     </script>
     {% endif %}
-
+<div>
+    <select name="role">
+        {% if role %}
+        {% for i in role %}
+        <option value="{{ i.role_id }}">{{ i.role_name }}</option>
+        {% endfor %}
+        {% endif %}
+    </select>
+</div>
 <label>
     name
 </label>
@@ -24,10 +32,7 @@
     email
 </label>
 <input type="text" name="email">
-<br/><label>
-    password
-</label>
-<input type="password" name="password">
+
 <br/><label>
     mobile no.
 </label>

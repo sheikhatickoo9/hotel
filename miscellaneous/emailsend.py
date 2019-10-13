@@ -4,12 +4,16 @@ import datetime
 import string
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-def sendmail(subject,receiver,mail):
-    msg=MIMEMultipart()
-    msg['From']= 'castlelords778@gmail.com'
-    msg['To']=receiver
-    msg['subject']=subject
-    msg.attach(MIMEText(mail,'plain'))
+
+
+def verify_link_send(subject, receiver, link, password):
+    msg = MIMEMultipart()
+    msg['From'] = 'castlelords778@gmail.com'
+    msg['To'] = receiver
+    msg['subject'] = subject
+
+    body = "Hey User! Your password is %s & your verify link is %s" % (str(password), str(link))
+    msg.attach(MIMEText(body, 'plain'))
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
     try:
