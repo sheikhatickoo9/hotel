@@ -1,4 +1,4 @@
-from admin_app.models import UserSignup
+from admin_app.models import UserSignup, UserRole
 from django import forms
 
 
@@ -20,3 +20,7 @@ class UserSignupForm(forms.ModelForm):
                  "is_verified",
                  "token"
                  ]
+class UserRoleForm(forms.ModelForm):
+    class Meta:
+        model = UserRole
+        exclude = ["role_name", "role_id"]

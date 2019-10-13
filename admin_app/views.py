@@ -87,6 +87,13 @@ def login(request):
         except:
             return render(request,"login.html",{'wrong_email':True})
     return render(request,"login.html")
+
+def add_role(request):
+    
+
+
+
+    return render(request, "add_role.html")
 #
 # def manager(request):
 #     try:
