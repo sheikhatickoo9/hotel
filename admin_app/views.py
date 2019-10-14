@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.models import User
 from admin_app.models import UserRole
-from admin_app.forms import UserSignupForm,UserRoleForm
+from admin_app.forms import UserSignupForm
 from miscellaneous.genericFunction import string_generate
 from miscellaneous import emailsend
 
