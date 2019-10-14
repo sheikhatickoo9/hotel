@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.models import User
 from admin_app.models import UserRole
-from admin_app.forms import UserSignupForm
+from admin_app.forms import UserSignupForm,UserRoleForm
 from miscellaneous.genericFunction import string_generate
 from miscellaneous import emailsend
 
@@ -20,6 +20,7 @@ def superuser_login(request):
         try:
             data = User.objects.get(username=username)
             if check_password(password, data.password):
+                request.session['role_name'] = "superuser"
                 return render(request, "super_user_dashboard.html")
             else:
                 return render(request, "login.html", {'wrong_password': True})
@@ -51,7 +52,7 @@ def signup(request):
             confirmation_link = "http://127.0.0.1:8000/verify/?link=" + link
             f.verify_link = link
             f.save()
-            emailsend.sendmail("link",request.POST['email'],confirmation_link)
+            emailsend.verify_link_send("link",request.POST['email'],confirmation_link, password)
             return redirect("/signup/")
     return render(request,'sign.html', {'role': data})
 
@@ -86,56 +87,59 @@ def login(request):
         except:
             return render(request,"login.html",{'wrong_email':True})
     return render(request,"login.html")
-def manager(request):
-    try:
-        authdata=authcheck.authentication(request.session['authenticate'],request.session['roleId'],role_manager)
-        if(authdata==True):
-            return render(request,'manager.html')
-        else:
-            authinfo,message=authdata
-            if(message=="Invalid_user"):
-                return redirect("/unauthoriz/")
-            elif(message=="NotLogin"):
-                return redirect("/notlogin/")
-    except:
-             return redirect("/notlogin/")
 
-def pageNotFound(request):
-    return render(request,'404.html')
-def notLogin(request):
-    return render(request,'notlogin.html')
-def unauthorizedAccess(request):
-    return render(request,'unauthoriz.html')
-def logout(request):
-    try:
-        request.session.pop("Authentication")
-        request.session.pop("email")
-        request.session.pop("roleId")
-        return redirect("/login/")
-    except:
-        return redirect("/login/")
 
-def ChangePassword(request):
-    if (request.method == "POST"):
-        cupass = request.POST['cpass']
-        conpass = request.POST['conpass']
-        npass = request.POST['npass']
-        # cpass = request.POST['cpass']
-       # email=request.session['email']
-        data = UserSignup.objects.get(user_email=request.session['email'])
-        if check_password(cupass, data.user_password):
-            if conpass == npass:
-        # opass=email_id.userPassword
-        # auth = check_password(cpass,opass)
-        # auth2 = check_password(apass,npass)
-        # if auth==True and auth2==True:
-                up = UserSignup(user_email=request.session['email'],user_password=make_password(npass))
-                up.save(update_fields=["userPassword"])
-                return HttpResponse("change successfully")
-            else:
-                return render(request, 'changePassword.html',{'n':True})
-        else:
-            return render(request, 'changePassword.html', {'y': True})
 
-    return render(request,'changePassword.html')
+# def manager(request):
+#     try:
+#         authdata=authcheck.authentication(request.session['authenticate'],request.session['roleId'],role_manager)
+#         if(authdata==True):
+#             return render(request,'manager.html')
+#         else:
+#             authinfo,message=authdata
+#             if(message=="Invalid_user"):
+#                 return redirect("/unauthoriz/")
+#             elif(message=="NotLogin"):
+#                 return redirect("/notlogin/")
+#     except:
+#              return redirect("/notlogin/")
 #
+# def pageNotFound(request):
+#     return render(request,'404.html')
+# def notLogin(request):
+#     return render(request,'notlogin.html')
+# def unauthorizedAccess(request):
+#     return render(request,'unauthoriz.html')
+# def logout(request):
+#     try:
+#         request.session.pop("Authentication")
+#         request.session.pop("email")
+#         request.session.pop("roleId")
+#         return redirect("/login/")
+#     except:
+#         return redirect("/login/")
+#
+# def ChangePassword(request):
+#     if (request.method == "POST"):
+#         cupass = request.POST['cpass']
+#         conpass = request.POST['conpass']
+#         npass = request.POST['npass']
+#         # cpass = request.POST['cpass']
+#        # email=request.session['email']
+#         data = UserSignup.objects.get(user_email=request.session['email'])
+#         if check_password(cupass, data.user_password):
+#             if conpass == npass:
+#         # opass=email_id.userPassword
+#         # auth = check_password(cpass,opass)
+#         # auth2 = check_password(apass,npass)
+#         # if auth==True and auth2==True:
+#                 up = UserSignup(user_email=request.session['email'],user_password=make_password(npass))
+#                 up.save(update_fields=["userPassword"])
+#                 return HttpResponse("change successfully")
+#             else:
+#                 return render(request, 'changePassword.html',{'n':True})
+#         else:
+#             return render(request, 'changePassword.html', {'y': True})
+#
+#     return render(request,'changePassword.html')
+# #

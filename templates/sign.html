@@ -15,9 +15,14 @@
     {% endif %}
 <div>
     <select name="role">
+        <option value="0">Select Role</option>
         {% if role %}
         {% for i in role %}
+        {% if request.session.role_name == "superuser" %}
+        {% if i.role_name == "admin" %}
         <option value="{{ i.role_id }}">{{ i.role_name }}</option>
+        {% endif %}
+        {% endif %}
         {% endfor %}
         {% endif %}
     </select>

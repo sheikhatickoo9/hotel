@@ -6,7 +6,7 @@ class UserRole(models.Model):
     role_name = models.CharField(max_length=200, default="", unique=True)
 
     def __str__(self):
-        return self.role_name
+        return str(self.role_id) + " " + str(self.role_name)
 
 
 class UserSignup(models.Model):
@@ -24,3 +24,6 @@ class UserSignup(models.Model):
     is_active = models.BooleanField(default=0)
     is_verified = models.BooleanField(default=0)
     token = models.CharField(max_length=200, default="", null=True)
+
+    def __str__(self):
+        return str(self.user_fullname)
