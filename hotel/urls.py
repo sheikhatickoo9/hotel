@@ -8,12 +8,12 @@ urlpatterns = [
     url(r'^signup/$',views.signup),
     url(r'^verify/$',views.verify),
     url(r'^login/$',views.login,name='login'),
-    # url(r'^manager/$',views.manager),
-    # url(r'^404/$',views.pageNotFound),
-    # url(r'^notlogin/$',views.notLogin),
-    # url(r'^unauthoriz/$',views.unauthorizedAccess),
-    # url(r'^logout/$',views.logout),
-    # url(r'^changepassword/$',views.ChangePassword),
+    url(r'^manager/$',views.manager),
+    url(r'^404/$',views.pageNotFound),
+    url(r'^notlogin/$',views.notLogin),
+    url(r'^unauthoriz/$',views.unauthorizedAccess),
+    url(r'^logout/$',views.logout),
+    url(r'^changepassword/$',views.ChangePassword),
 ]
 
 
