@@ -20,7 +20,6 @@ def verify_link_send(subject, receiver, link, password):
         server.login('castlelords778@gmail.com', 'hotelmanagement')
         text=msg.as_string()
         server.sendmail(msg['FROM'], msg["To"], text)
-
         print("email send successful")
         server.quit()
         return True
@@ -28,9 +27,9 @@ def verify_link_send(subject, receiver, link, password):
         print("error not sent")
         return False
 subject = 'subject of the mail'
-receiver = 'sheikhanetmax@gmail.com'
+receiver = 'madaanamit376@gmail.com'
 mail= 'welcome here'
-# sendmail(subject,receiver,mail)
+# verify_link_send(subject,receiver,mail,"hello")
 def gen_otp():
     letters=string.ascii_letters
     otp = random.randint(1,100000)

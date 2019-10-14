@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `admin_app_userrole` (
 -- Dumping data for table hotel_db1.admin_app_userrole: ~1 rows (approximately)
 /*!40000 ALTER TABLE `admin_app_userrole` DISABLE KEYS */;
 INSERT INTO `admin_app_userrole` (`role_id`, `role_name`) VALUES
-	(1, 'admin');
+	(1hotel_db1admin_app_userroleadmin_app_usersignup, 'admin');
 /*!40000 ALTER TABLE `admin_app_userrole` ENABLE KEYS */;
 
 -- Dumping structure for table hotel_db1.admin_app_usersignup

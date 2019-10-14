@@ -143,3 +143,5 @@ def login(request):
 #
 #     return render(request,'changePassword.html')
 # #
+def frontpage(request):
+    return render(request,'frontpage.html')
