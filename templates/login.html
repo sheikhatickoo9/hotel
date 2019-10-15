@@ -7,8 +7,13 @@
 <body>
 
 <form method="post">
+    {% csrf_token %}
+{% if s %}
+    <script>
+        alert("verified user successfully")
+    </script>
+    {% endif %}
 
-     {% csrf_token %}
     {% if v %}
     <script>
     alert(" verify manager successfully please login")

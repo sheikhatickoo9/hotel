@@ -4,10 +4,8 @@ from admin_app.models import UserRole
 from admin_app.forms import UserSignupForm
 from miscellaneous.genericFunction import string_generate
 from miscellaneous import emailsend
-
 from authorize import authcheck
 from admin_app.models import UserSignup
-
 from django.contrib.auth.hashers import make_password,check_password
 from miscellaneous.myconstants import role_manager
 from authorize.authcheck import authentication
@@ -21,6 +19,7 @@ def superuser_login(request):
             data = User.objects.get(username=username)
             if check_password(password, data.password):
                 request.session['role_name'] = "superuser"
+
                 return render(request, "super_user_dashboard.html")
             else:
                 return render(request, "login.html", {'wrong_password': True})
@@ -53,7 +52,7 @@ def signup(request):
             f.verify_link = link
             f.save()
             emailsend.verify_link_send("link",request.POST['email'],confirmation_link, password)
-            return redirect("/signup/")
+            return HttpResponse("email send successfully")
     return render(request,'sign.html', {'role': data})
 
 
@@ -63,7 +62,7 @@ def verify(request):
         data = UserSignup.objects.get(verify_link=link)
         up = UserSignup(user_email=data.user_email, is_verified=1, is_active=1, verify_link="")
         up.save(update_fields=["is_verified", "is_active", "verify_link"])
-        return HttpResponse(" verified user successfully done")
+        return redirect("/login/?s")
     except:
         return redirect("/404/")
 #
@@ -81,7 +80,9 @@ def login(request):
                         request.session['roleId'] = data.role_id
                         request.session['name'] = data.user_fullname
                         if data.role_id == 1:
-                            return redirect("//")
+                            return redirect("/admin_page/")
+                        if data.role_id == 2:
+                            return redirect("/manager/")
             else:
                 return render(request,"login.html",{'wrong_password':True})
         except:
@@ -143,5 +144,7 @@ def login(request):
 #
 #     return render(request,'changePassword.html')
 # #
+def admin_page(request):
+    return render(request,"admin.html")
 def frontpage(request):
     return render(request,'frontpage.html')
