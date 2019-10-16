@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Profile</title>
+</head>
+<body>
+<table border="2">
+    <tr>
+        <td>fullname</td>
+        <td>email</td>
+        <td>password</td>
+        <td>mobile</td>
+        <td>Action</td>
+        <td>Action2</td>
+
+    </tr>
+    {% if d %}
+    {% for i in d %}
+    <tr>
+        <td>{{i.user_email}}
+        </td>
+         <td>{{i.user_fullname}}
+        </td>
+         <td>{{i.user_password}}
+        </td>
+         <td>{{i.user_mobile}}
+         </td>
+        <td>{{i.user_state}}
+        </td>
+         <td>{{i.user_address}}
+        </td>
+         <td>{{i.user_age}}
+        </td>
+
+          <td><a href="/delete/?id={{i.userEmail}}">delete</a></td>
+        <td><a href="edit">edit</a> </td>
+       <td><a href="/edit/?id={{i.userEmail}}">EDIT</a></td>
+    </tr>
+
+    {% endfor %}
+    {% endif %}
+</table>
+
+</body>
+</html>

@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^unauthoriz/$',views.unauthorizedAccess),
     url(r'^logout/$',views.logout),
     url(r'^changepassword/$',views.ChangePassword),
-    url(r'^frontpage/$',views.frontpage)
+    url(r'^frontpage/$',views.frontpage),
+    url(r'^viewprofile/$',views.show_profile,name="viewprofile")
 ]
-
 

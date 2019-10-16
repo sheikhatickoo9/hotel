@@ -170,3 +170,12 @@ def admin_page(request):
     return render(request,"admin.html")
 def frontpage(request):
     return render(request,'frontpage.html')
+def show_profile(request):
+    email = request.session['email']
+    data = UserSignup.objects.filter(user_email=email)
+    return render(request,"viewprofile.html",{'d':data})
+def update_profile(request):
+    pass
+
+
+
