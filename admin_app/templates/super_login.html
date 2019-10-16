@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+</head>
+<body>
+
+<form method="post">
+    {% csrf_token %}
+    {% if  request.session.verify_link == 'link' %}
+    <script>
+        alert("verified user successfully")
+    </script>
+    {% endif %}
+
+    {% if v %}
+    <script>
+    alert(" verify manager successfully please login")
+    </script>
+    {% endif %}
+
+ <h1>super user login page</h1>
+
+
+
+    {% if wrong_email %}
+    <script type="text/javascript">
+        alert("Wrong Email");
+    </script>
+    {% elif wrong_password %}
+    <script type="text/javascript">
+        alert("Wrong Password");
+    </script>
+    {% endif %}
+
+
+<label>
+    email
+</label>
+<input type="text" name="email">
+<br/><label>
+    password
+</label>
+<input type="password" name="password">
+<br/>
+    <input type="submit" value="login">
+</form>
+<div></div>
+</body>
+</html>
+
+</body>
+</html>
