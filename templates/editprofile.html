@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post">
+    {% csrf_token %}
+    {% if sucess %}
+    <script type="text/javascript">
+        alert('successfully Ragistered')
+    </script>
+    {% endif %}
+    {% if p %}
+        <label>{{ p.user_email }}</label>
+    {% endif %}
+<br/>
+    <label>NAME</label>
+    <input type="text" name="userfullname" id="t1" value={{p.user_fullname}}>
+    <br/>
+    <label>password</label>
+    <input type="text" name="userpassword" id="t2" value={{p.user_password}}>
+<br/>
+    <label>mobile</label>
+    <input type="text" name="usermobile" id="t3" value={{p.user_mobile}}>
+<br/>
+    <label>age</label>
+        <input type="text" name="userage" id="t5" value={{p.user_age}}>
+    <br/>
+    <label>address</label>
+        <input type="text" name="useraddress" id="t8" value={{p.user_address}}>
+    <br/>
+    <label>address</label>
+        <input type="text" name="userstate" id="t7" value={{p.user_state}}>
+    <br/>
+
+<input type="submit" value="update">
+</form>
+</body>
+</html>

@@ -181,9 +181,10 @@ def update_profile(request):
 
 
 def edit_profile(request):
+    useremail = request.GET["email"]
+    data=UserSignup.objects.get(user_email=useremail)
     if request.method=="POST":
-        useremail = request.GET["email"]
-        return HttpResponse(useremail)
+        pass
         username = request.POST["userfullname"]
         userpassword = make_password(request.POST["userpassword"])
         usermobile = request.POST["usermobile"]
@@ -191,6 +192,6 @@ def edit_profile(request):
         useraddress = request.POST["useraddress"]
         userstate = request.POST["userstate"]
         up=UserSignup(user_email=useremail,user_fullname=username,user_password=userpassword,user_mobile=usermobile,user_age=userage,user_address=useraddress,user_state=userstate)
-        up.save(update_fields=["useremail", "userfullname", "userpassword", "usermobile", "userage", "useraddress", "userstate"])
+        up.save(update_fields=["user_fullname", "user_password", "user_mobile", "user_age", "user_address", "user_state"])
         return render(request,'editprofile.html',{"sucess":True})
-    return render(request,'editprofile.html')
+    return render(request,'editprofile.html',{"p":data})
