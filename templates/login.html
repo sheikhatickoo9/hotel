@@ -8,7 +8,7 @@
 
 <form method="post">
     {% csrf_token %}
-{% if s %}
+    {% if  request.session.verify_link == 'link' %}
     <script>
         alert("verified user successfully")
     </script>
@@ -19,6 +19,14 @@
     alert(" verify manager successfully please login")
     </script>
     {% endif %}
+
+    ADMIN<input type="radio" value="1" name="radio">
+<br/>
+    MANAGER<input type="radio" value="2" name="radio">
+<br/>
+
+
+
     {% if wrong_email %}
     <script type="text/javascript">
         alert("Wrong Email");

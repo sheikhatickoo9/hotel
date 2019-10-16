@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Signup</title>
 </head>
-
 <body>
 <form method="post">
     {% csrf_token %}
@@ -14,12 +13,14 @@
     </script>
     {% endif %}
 <div>
-    {{ role.1 }}
     <select name="role">
         {% if role %}
-        {% for i in role %}
-        <option value="{{ i.role_id }}">{{ i.role_name }}</option>
-        {% endfor %}
+        {% if  request.session.role_name == 'superuser' %}
+        <option value="{{ role.0.role_id }}">{{ role.0.role_name }}</option>
+        {% endif %}
+        {% if  request.session.role_name == 'admin' %}
+        <option value="{{ role.1.role_id }}">{{ role.1.role_name }}</option>
+        {% endif %}
         {% endif %}
     </select>
 
