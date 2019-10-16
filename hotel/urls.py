@@ -15,6 +15,8 @@ urlpatterns = [
     url(r'^logout/$',views.logout),
     url(r'^changepassword/$',views.ChangePassword),
     url(r'^frontpage/$',views.frontpage),
-    url(r'^viewprofile/$',views.show_profile,name="viewprofile")
+    url(r'^viewprofile/$',views.show_profile,name="viewprofile"),
+url(r'^editprofile/$',views.edit_profile,name="editprofile")
+
 ]
 

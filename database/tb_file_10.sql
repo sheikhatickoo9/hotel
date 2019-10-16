@@ -18,7 +18,7 @@ USE `hotel_db1`;
 
 -- Dumping structure for table hotel_db1.admin_app_userrole
 CREATE TABLE IF NOT EXISTS `admin_app_userrole` (
-  `role_id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_id` int(11) NOT NULL AUTO_INCREMENT,hotel_db1hotel_db1admin_app_userroleadmin_app_userrole
   `role_name` varchar(200) NOT NULL,
   PRIMARY KEY (`role_id`),
   UNIQUE KEY `role_name` (`role_name`)

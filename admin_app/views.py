@@ -166,16 +166,31 @@ def ChangePassword(request):
 
     return render(request,'changePassword.html')
 
+
 def admin_page(request):
     return render(request,"admin.html")
 def frontpage(request):
     return render(request,'frontpage.html')
 def show_profile(request):
     email = request.session['email']
-    data = UserSignup.objects.filter(user_email=email)
+    data = UserSignup.objects.get(user_email=email)
     return render(request,"viewprofile.html",{'d':data})
 def update_profile(request):
     pass
 
 
 
+def edit_profile(request):
+    if request.method=="POST":
+        useremail = request.GET["email"]
+        return HttpResponse(useremail)
+        username = request.POST["userfullname"]
+        userpassword = make_password(request.POST["userpassword"])
+        usermobile = request.POST["usermobile"]
+        userage = request.POST["userage"]
+        useraddress = request.POST["useraddress"]
+        userstate = request.POST["userstate"]
+        up=UserSignup(user_email=useremail,user_fullname=username,user_password=userpassword,user_mobile=usermobile,user_age=userage,user_address=useraddress,user_state=userstate)
+        up.save(update_fields=["useremail", "userfullname", "userpassword", "usermobile", "userage", "useraddress", "userstate"])
+        return render(request,'editprofile.html',{"sucess":True})
+    return render(request,'editprofile.html')

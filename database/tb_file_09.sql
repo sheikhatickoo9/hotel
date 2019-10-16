@@ -11,7 +11,7 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Dumping data for table hotel_db1.admin_app_userrole: ~1 rows (approximately)
+-- Dumping datahotel_db1admin_app_userrole for table hotel_db1.admin_app_userrole: ~1 rows (approximately)
 /*!40000 ALTER TABLE `admin_app_userrole` DISABLE KEYS */;
 INSERT INTO `admin_app_userrole` (`role_id`, `role_name`) VALUES
 	(1, 'admin');

@@ -7,38 +7,38 @@
 <body>
 <table border="2">
     <tr>
-        <td>fullname</td>
         <td>email</td>
+        <td>fullname</td>
         <td>password</td>
         <td>mobile</td>
-        <td>Action</td>
-        <td>Action2</td>
+        <td>state</td>
+        <td>address</td>
+        <td>state</td>
 
     </tr>
     {% if d %}
-    {% for i in d %}
     <tr>
-        <td>{{i.user_email}}
+        <td>{{ d.user_email }}
         </td>
-         <td>{{i.user_fullname}}
+         <td>{{ d.user_fullname }}
         </td>
-         <td>{{i.user_password}}
+         <td>{{ d.user_password }}
         </td>
-         <td>{{i.user_mobile}}
+         <td>{{ d.user_mobile }}
          </td>
-        <td>{{i.user_state}}
+        <td>{{ d.user_state }}
         </td>
-         <td>{{i.user_address}}
+         <td>{{ d.user_address }}
         </td>
-         <td>{{i.user_age}}
-        </td>
+         <td>{{ d.user_age }}
+         </td>
 
-          <td><a href="/delete/?id={{i.userEmail}}">delete</a></td>
-        <td><a href="edit">edit</a> </td>
-       <td><a href="/edit/?id={{i.userEmail}}">EDIT</a></td>
+
+          <td><a href="/delete/?id={{d.user_email}}">Delete</a></td>
+       <td><a href="/editprofile/?email={{d.user_email}}">EDIT</a></td>
     </tr>
 
-    {% endfor %}
+
     {% endif %}
 </table>
 
