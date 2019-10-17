@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'admin_app'
+    'admin_app',
+    'staff'
 
 ]
 
@@ -86,7 +87,7 @@ WSGI_APPLICATION = 'hotel.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hotel_db1',
+        'NAME': 'new_hotel_db',
         'PORT': '3306',
         'HOST': '127.0.0.1',
         'USER': 'hotel_management',
