@@ -5,14 +5,20 @@ class DepartmentForm(forms.ModelForm):
         model = Department
         exclude = ["Dept_id",
                    "Dept_name",
+                   "isActive"
                    ]
 class Add_staffForm(forms.ModelForm):
         class Meta:
             model = Add_staff
-            exclude =["fullname",
-                      "Email",
-                      "phone_number",
-                      "Address","Post","salary","Age"]
+            exclude =["Dept_id",
+                        "Fullname",
+                         "Email",
+                         "Phone_number",
+                         "Address",
+                         "Post",
+                         "Salary",
+                         "Age"]
+
 
 
 

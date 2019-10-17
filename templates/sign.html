@@ -2,17 +2,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Signup</title>
-</head>
-<body>
-<form method="post">
-    {% csrf_token %}
-{% if sucess %}
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/css/form.css">
+    <title>Hello, world!</title>
+  </head>
+
+<div class="container">
+    <div class="school">
+        <h1>SIGN_UP PAGE</h1>
+    </div>
     <script>
-        alert("successfully done")
+
+              function validate()
+    {
+    var  check=/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+
+    var email=document.getElementById("inputGroupPrepend").value;
+    var pass=document.getElementById("validationCustom03").value;
+    var contact=document.getElementById("validationCustom04").value;
+
+
+        if(check.test(email))
+            {
+                if(pass.length>=8 && pass.length<=16)
+                {
+                        if(contact.length>9)
+                        {
+                        alert("successfully registered ")
+                        }
+                        else{
+                            alert("contact length is minimum 10")
+                            }
+                }
+                else{
+                    alert(" in password please enter 9 character")
+                }
+            }
+        else{
+            alert("enter valid email")
+        }
+    }
     </script>
+
+
+
+<form class="needs-validation" novalidate method="post" enctype="multipart/form-data" >
+    {% csrf_token %}
+    {% if sucess %}
+    <script>
+        alert("successfully registered")
+    </script>
+
     {% endif %}
-<div>
+    <div>
     <select name="role">
         {% if role %}
         {% if  request.session.role_name == 'superuser' %}
@@ -25,34 +73,117 @@
     </select>
 
 </div>
-<label>
-    name
-</label>
-<input type="text" name="name">
-<br/>
-<label>
-    email
-</label>
-<input type="text" name="email">
+  <div class="form-row">
 
-<br/><label>
-    mobile no.
-</label>
-<input type="text" name="mobile">
-<br/><label>
-    age
-</label>
-<input type="text" name="age">
-<br/><label>
-    address
-</label>
-<input type="text" name="address">
-<br/><label>
-    state
-</label>
-<input type="text" name="state">
-<br/>
-    <input type="submit" name="submit">
+
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom02">User-Name</label>
+      <input type="text" class="form-control" name="name" id="validationCustom05" placeholder="NAME" value="Amit" required>
+      <div class="valid-feedback">
+          Looks good!
+
+      </div>
+    </div>
+      <div class="col-md-4 mb-3">
+      <label for="validationCustomUsername">User-Email</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupPrepend">@</span>
+        </div>
+        <input type="text" class="form-control" name="email"  id="validationCustomUsername" placeholder="EMAIL" aria-describedby="inputGroupPrepend" required>
+        <div class="invalid-feedback">
+          Please enter email .
+        </div>
+      </div>
+    </div>
+
+      <div class="col-md-3 mb-3">
+                <label for="validationCustom05">User-Mobile</label>
+                <input type="text" class="form-control" id="validationCustom02" name="mobile" placeholder="MOBILE" required>
+                <div class="invalid-feedback">
+                    Please enter mobile no .
+
+                </div>
+    </div>
+      </div>
+
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationCustom03">User-Age</label>
+      <input type="text" class="form-control" name="age" id="validationCustom03" placeholder="AGE" required>
+      <div class="invalid-feedback">
+        Please enter age.
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationCustom04">User-Address</label>
+      <input type="text" class="form-control" name="address" id="validationCustom04" placeholder="ADDRESS" required>
+      <div class="invalid-feedback">
+        Please enter a adderss.
+      </div>
+    </div>
+      <div class="col-md-3 mb-3">
+      <label for="validationCustom04">User-State</label>
+      <input type="text" class="form-control" name="state" id="validationCustom00" placeholder="STATE" required>
+      <div class="invalid-feedback">
+        Please enter a state .
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationCustom05">User-Image</label>
+      <input type="file" class="form-control" name="userimages" id="validationCustom11" placeholder="Image" required>
+      <div class="invalid-feedback">
+        Please enter image name.
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+      <label class="form-check-label" for="invalidCheck">
+        Agree to terms and conditions
+      </label>
+      <div class="invalid-feedback">
+        You must agree before submitting.
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit"  >Submit form</button>
 </form>
-</body>
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+
+
+
+</script>
+
+</div>
+ <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="/assets/js/jquery-3.4.1.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+
+
+</body>>
+
+
 </html>
