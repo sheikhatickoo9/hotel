@@ -6,7 +6,6 @@ def add_staff(request):
     data=Department.objects.all()
     if request.method == "POST":
         form = Add_staffForm(request.POST)
-
         f = form.save(commit=False)
         f.Fullname = request.POST["name"]
         f.Email = request.POST["email"]
@@ -19,6 +18,7 @@ def add_staff(request):
         f.save()
         return render(request,'add_staff.html',{"s":True})
     return render(request,"add_staff.html",{"d":data})
+
 def add_department(request):
     if request.method == "POST":
         form = DepartmentForm(request.POST)

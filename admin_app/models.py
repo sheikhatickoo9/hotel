@@ -25,5 +25,6 @@ class UserSignup(models.Model):
     is_verified = models.BooleanField(default=0)
     token = models.CharField(max_length=200, default="", null=True)
 
+
     def __str__(self):
         return str(self.user_fullname)

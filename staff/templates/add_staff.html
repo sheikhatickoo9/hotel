@@ -3,6 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,10 +19,10 @@
     <link rel="stylesheet" href="/assets/css/form.css">
     <title>Hello, world!</title>
   </head>
-
+<body>
 <div class="container">
     <div class="school">
-        <h1>LOGIN PAGE</h1>
+        <h1>ADD STAFF</h1>
     </div>
     <script>
 
@@ -56,24 +63,27 @@
     {% csrf_token %}
 
 
-<center>
-    {% if wrong_email %}
-    <script type="text/javascript">
-        alert("Wrong Email");
+ {% if s %}
+    <script>
+        alert("staff added successfully")
     </script>
-    {% elif wrong_password %}
-    <script type="text/javascript">
-        alert("Wrong Password");
-    </script>
+
+
     {% endif %}
-
-  <div class="f">
-
+  <div class="form-row">
 
 
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom02">User-Name</label>
+      <input type="text" class="form-control" name="name" id="validationCustom05" placeholder="NAME" value="Amit" required>
+      <div class="valid-feedback">
+          Looks good!
+
+      </div>
+    </div>
 
       <div class="col-md-4 mb-3">
-      <label for="validationCustomUsername"></label>
+      <label for="validationCustomUsername">User-Email</label>
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text" id="inputGroupPrepend">@</span>
@@ -85,17 +95,60 @@
       </div>
     </div>
 
-      <div class="col-md-4 mb-4">
-      <label for="validationCustom13"></label>
-      <input type="password" class="form-control size"  name="password" id="validationCustom13" placeholder="PASSWORD"  required>
+      <div class="col-md-3 mb-3">
+                <label for="validationCustom05">User-Mobile</label>
+                <input type="text" class="form-control" id="validationCustom02" name="mobile" placeholder="MOBILE" required>
+                <div class="invalid-feedback">
+                    Please enter mobile no .
+
+                </div>
+    </div>
+      </div>
+
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationCustom03">User-Age</label>
+      <input type="text" class="form-control" name="age" id="validationCustom03" placeholder="AGE" required>
       <div class="invalid-feedback">
-          Please enter password .
+        Please enter age.
       </div>
     </div>
+      <div class="col-md-3 mb-3">
+          <label for="validationCustom05">User-Salary</label>
+      <input type="text" class="form-control" name="salary" id="validationCustom11" placeholder="salary" required>
+      <div class="invalid-feedback">
+        Please enter user salary.
+      </div>
 
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationCustom04">User-Address</label>
+      <input type="text" class="form-control" name="address" id="validationCustom04" placeholder="ADDRESS" required>
+      <div class="invalid-feedback">
+        Please enter a adderss.
+      </div>
+    </div>
+      <div class="col-md-3 mb-3">
+      <label for="validationCustom04">User-Post</label>
+      <input type="text" class="form-control" name="post" id="validationCustom00" placeholder="Post" required>
+      <div class="invalid-feedback">
+        Please enter a state .
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
 
+    </div>
+  </div>
 
+    {% if d %}
+<h6>role</h6>
+    <select name="dept">
+        {% for i in d %}
+      <option value="{{i.Dept_id}}" >{{ i.Dept_name }}</option>
+        {% endfor %}
+      </select>
 
+    {% endif %}
 
   <div class="form-group">
     <div class="form-check">
@@ -108,9 +161,7 @@
       </div>
     </div>
   </div>
-  <button class="btn btn-primary" type="submit"  >Login form</button>
-      </div>
-</center>
+  <button class="btn btn-primary" type="submit"  >Submit form</button>
 </form>
 
 <script>
@@ -143,9 +194,5 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="/assets/js/jquery-3.4.1.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
-
-
 </body>
-
-
 </html>

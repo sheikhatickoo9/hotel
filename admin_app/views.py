@@ -7,7 +7,7 @@ from miscellaneous import emailsend
 from authorize import authcheck
 from admin_app.models import UserSignup
 from django.contrib.auth.hashers import make_password,check_password
-from miscellaneous.myconstants import role_manager
+from miscellaneous.myconstants import role_manager,role_admin
 from authorize.authcheck import authentication
 
 
@@ -60,51 +60,36 @@ def verify(request):
     link = request.GET['link']
     try:
         data = UserSignup.objects.get(verify_link=link)
-
         request.session["verify_link"]="link"
         up = UserSignup(user_email=data.user_email, is_verified=1, is_active=1, verify_link="")
         up.save(update_fields=["is_verified", "is_active", "verify_link"])
         return redirect("/login/")
     except:
         return redirect("/404/")
+
 #
 def login(request):
     if(request.method=="POST"):
         email = request.POST['email']
-        head=request.POST["radio"]
-        password = request.POST['password']
+
         data = UserSignup.objects.get(user_email=email)
         request.session['role_name'] = "admin"
-
+        password = request.POST['password']
         try:
-            if head=="1":
-                if check_password(password,data.user_password):
-                    if data.is_verified == 1:
-                        if data.is_active == 1:
-                            request.session['authenticate'] = True
-                            request.session['email'] = email
-                            request.session['roleId'] = data.role_id
-                            request.session['name'] = data.user_fullname
-                            # if data.role_id == 1:
+            if check_password(password,data.user_password):
+                if data.is_verified == 1:
+                    if data.is_active == 1:
+                        request.session['authenticate'] = True
+                        request.session['email'] = email
+                        request.session['roleId'] = data.role_id
+                        request.session['name'] = data.user_fullname
+                        # if data.role_id == 1:
+                        if data.role_id==1:
                             return redirect("/admin_page/")
-                        # if data.role_id == 2:
-                        #     return redirect("/admin_page/")
-                else:
-                    return render(request,"login.html",{'wrong_password':True})
-            elif head=="2":
-                if check_password(password,data.user_password):
-                    if data.is_verified == 1:
-                        if data.is_active == 1:
-                            request.session['authenticate'] = True
-                            request.session['email'] = email
-                            request.session['roleId'] = data.role_id
-                            request.session['name'] = data.user_fullname
-                            # if data.role_id == 1:
+                        if data.role_id == 2:
                             return redirect("/manager/")
-                        # if data.role_id == 2:
-                        #     return redirect("/admin_page/")
-                else:
-                    return render(request,"login.html",{'wrong_password':True})
+            else:
+                return render(request,"login.html",{'wrong_password':True})
         except:
             return render(request,"login.html",{'wrong_email':True})
     return render(request,"login.html")
@@ -115,9 +100,15 @@ def manager(request):
     # d=role_manager
     # return HttpResponse(d)
     try:
-        authdata=authcheck.authentication(request.session['authenticate'],request.session['roleId'],2)
+        email=request.session['email']
+        data=UserSignup.objects.get(user_email=email)
+        authdata=authcheck.authentication(request.session['authenticate'],request.session['roleId'],data.role_id)
         if(authdata==True):
-            return render(request,'manager.html')
+            if data.role_id==2:
+                return render(request,'manager.html')
+            elif data.role_id==1:
+                return render(request, 'admin.html')
+
         else:
             authinfo,message=authdata
             if(message=="Invalid_user"):
@@ -175,6 +166,8 @@ def show_profile(request):
     email = request.session['email']
     data = UserSignup.objects.get(user_email=email)
     return render(request,"viewprofile.html",{'d':data})
+
+
 def update_profile(request):
     pass
 

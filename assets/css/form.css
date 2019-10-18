@@ -1,0 +1,21 @@
+body{
+    background-color:black;
+}
+label{
+    color:white;
+}
+.school h1{
+    color: aqua;
+    text-align: center;
+}
+.container{
+    margin-top: 70px;
+
+}
+
+.radio text {
+color:white;
+}
+h6{
+color:white;
+}
